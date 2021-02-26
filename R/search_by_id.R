@@ -58,5 +58,9 @@ search_by_id <- function(id,
     output = output
   )
   
+  if(nrow(res) == 0){
+    message(paste0("no results found for id ", id))
+  }
+  
   return(res)
 }

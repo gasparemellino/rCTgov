@@ -39,6 +39,8 @@ search_ctgov <- function(expr,
   assertthat::assert_that(is.character(fmt))
   assertthat::assert_that(is.character(output) & toupper(output) %in% c("WIDE", "LONG"))
   
+  expr <- gsub(" ", "+", expr)#substitute spaces with + as per API
+  
   n <- length(fields)
   if(n > 50){
     message(paste0("The number of fields requested is ", n, ". This may take a while..."))
@@ -75,5 +77,10 @@ search_ctgov <- function(expr,
   if (toupper(output) == "LONG") {
     res <- tidyr::gather(res)
   }
+  
+  if(nrow(res) == 0){
+    message(paste0("no results found for ", expr))
+  }
+  
   return(res)
 }
