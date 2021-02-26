@@ -1,6 +1,5 @@
 # rCTgov  
-The rCTgov package is a collection of functions to interact with the ClinicalTrials.gov API  
-https://clinicaltrials.gov/api/  
+The rCTgov package is a collection of functions to interact with the [ClinicalTrials.gov API](https://clinicaltrials.gov/api/)  
 
 ## Installation  
 ```r
@@ -13,8 +12,7 @@ library(rCTgov)
 ## Functions  
 
 ### all_fields()
-The function returns an alphabetical list of all study fields available.  
-https://clinicaltrials.gov/api/info/study_fields_list
+The function returns an alphabetical list of [all study fields available](https://clinicaltrials.gov/api/info/study_fields_list)  
 
 ```r
 fields <- all_fields()
@@ -38,7 +36,7 @@ search_by_id("BP28248", output = "LONG") #as per above, but in long format
 search_by_id("BP28248", fields = all_fields()) #returns all fields for study BP28248 - CAREFUL this will take a while...
 search_by_id("BP28248", fields = c("OrgStudyId", "NCTId")) #specify fields wanted to be returned by the query
 search_by_id("NCT01874691", area = c("NCTId")) #specify in which field to search
-search_by_id("BP28248", coverage = "FullMatch") #speficy coverage (see here: https://clinicaltrials.gov/api/gui/ref/expr#coverageOp)
+search_by_id("BP28248", coverage = "FullMatch") #speficy coverage see here: https://clinicaltrials.gov/api/gui/ref/expr#coverageOp
 
 #return specific information for a study
 study_info <- search_by_id("BP30153")
@@ -49,7 +47,7 @@ study_info$Phase
 ```
 
 ### search_ctgov()
-This function is used to search across study fields and it consumes the Study Fields API (https://clinicaltrials.gov/api/gui/demo/simple_study_fields)
+This function is used to search across study fields and it consumes the [Study Fields API](https://clinicaltrials.gov/api/gui/demo/simple_study_fields)
 
 ```r
 search_ctgov("heart+attack")
