@@ -7,7 +7,7 @@
 search_by_id(
   id,
   area = c("OrgStudyId", "SecondaryId"),
-  coverage = "Contains",
+  coverage = c("Contains", "FullMatch", "StartsWith", "EndsWith"),
   fields = default_fields(),
   min_rnk = 1,
   max_rnk = 1000,

@@ -10,7 +10,7 @@ search_ctgov(
   min_rnk = 1,
   max_rnk = 1000,
   fmt = "csv",
-  output = "WIDE"
+  output = c("WIDE", "LONG")
 )
 }
 \arguments{

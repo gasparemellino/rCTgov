@@ -26,7 +26,7 @@
 #' 
 search_by_id <- function(id,
                          area = c("OrgStudyId", "SecondaryId"), #area must not be null
-                         coverage = "Contains",
+                         coverage = c("Contains", "FullMatch", "StartsWith", "EndsWith"),
                          fields = default_fields(),
                          min_rnk = 1,
                          max_rnk = 1000,
@@ -35,13 +35,10 @@ search_by_id <- function(id,
   
   assertthat::assert_that(is.character(id))
   assertthat::assert_that(is.character(area))
-  assertthat::assert_that(is.character(coverage) & coverage %in% c("Contains", "FullMatch", "StartsWith", "EndsWith")) 
   assertthat::assert_that(is.character(fields))
   assertthat::assert_that(is.numeric(min_rnk))
   assertthat::assert_that(is.numeric(max_rnk) & max_rnk <= 1000)
-  assertthat::assert_that(is.character(fmt))
-  assertthat::assert_that(is.character(output) & toupper(output) %in% c("WIDE", "LONG"))
-  
+  coverage = match.arg(coverage)
   
   expr <- ""
   for (a in area) {

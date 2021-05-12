@@ -30,14 +30,14 @@ search_ctgov <- function(expr,
                          min_rnk = 1,
                          max_rnk = 1000,
                          fmt = "csv",
-                         output = "WIDE") {
+                         output = c("WIDE", "LONG")) {
   
   assertthat::assert_that(is.character(expr))
   assertthat::assert_that(is.character(fields))
   assertthat::assert_that(is.numeric(min_rnk))
   assertthat::assert_that(is.numeric(max_rnk) & max_rnk <= 1000)
-  assertthat::assert_that(is.character(fmt))
-  assertthat::assert_that(is.character(output) & toupper(output) %in% c("WIDE", "LONG"))
+  assertthat::assert_that(is.character(fmt) & fmt == "csv")
+  output = match.arg(output)
   
   expr <- gsub(" ", "+", expr)#substitute spaces with + as per API
   
@@ -65,6 +65,7 @@ search_ctgov <- function(expr,
         "&fmt=",
         fmt
       )
+    
     res_api <- read_csv(url(url1), skip = 10, col_types = cols(.default = "c"))
     res_adjusted <- subset(res_api, select = -Rank) #remove unnecessary Rank column
     c <- c + 1
