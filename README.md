@@ -1,10 +1,3 @@
----
-title: "rCTgov README"
-output:
-  html_document:
-    toc: true
----
-
 # rCTgov  
 The rCTgov package is a collection of R functions to interact with the [ClinicalTrials.gov API](https://clinicaltrials.gov/api/)  
 
