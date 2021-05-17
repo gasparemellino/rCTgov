@@ -1,10 +1,17 @@
+---
+title: "rCTgov README"
+output:
+  html_document:
+    toc: true
+---
+
 # rCTgov  
-The rCTgov package is a collection of functions to interact with the [ClinicalTrials.gov API](https://clinicaltrials.gov/api/)  
+The rCTgov package is a collection of R functions to interact with the [ClinicalTrials.gov API](https://clinicaltrials.gov/api/)  
 
 ## Installation  
 ```r
 # install.packages("devtools")
-devtools::install_github("PDCuration/rCTgov", host = "https://github.roche.com/api/v3")
+devtools::install_github("gasparemellino/rCTgov")  
 
 library(rCTgov)
 ```
@@ -20,21 +27,21 @@ fields <- all_fields()
 
 ### default_fields()
 This function is used by the *search_by_id* and *search_ctgov* functions as default fields returned by the query. 
-This list should contain the list of fields most used, e.g. to build the TS domain.
+This list should contain the list of fields most frequently used (this is to improve performance). This list can, of course, be changed locally as required.  
 
 ```r
 fields <- default_fields()
 ```
 
 ### search_by_id()
-This function can be used to retrive the information of a particular study. It uses the *search_ctgov* function above. 
+This function can be used to retrieve the information of a particular study. It uses the *search_ctgov* function. 
 Examples:
 
 ```r
-search_by_id("BP28248") #returns the information for study BP28248 useing the default fields defined in default_fields()
+search_by_id("BP28248") #returns the information for study BP28248 using the default fields defined in default_fields()
 search_by_id("BP28248", output = "LONG") #as per above, but in long format
 search_by_id("BP28248", fields = all_fields()) #returns all fields for study BP28248 - CAREFUL this will take a while...
-search_by_id("BP28248", fields = c("OrgStudyId", "NCTId")) #specify fields wanted to be returned by the query
+search_by_id("BP28248", fields = c("OrgStudyId", "NCTId")) #select which fields to be returned by the query
 search_by_id("NCT01874691", area = c("NCTId")) #specify in which field to search
 search_by_id("BP28248", coverage = "FullMatch") #speficy coverage see here: https://clinicaltrials.gov/api/gui/ref/expr#coverageOp
 
@@ -57,8 +64,11 @@ search_ctgov("Severe Headache") #free search across all fields
 search_ctgov("BP28248", fields = all_fields()) #note: all_fields() takes a long time to run
 ```
 
-## NOTES  
-- Search using "all_fields()" is only recommended in certain cases as it gives a slow performance
-- Futher documentation is available in each function and on the [clinicaltrials.gov API website](https://clinicaltrials.gov/api/) 
+   
+_________________________
+## Important Notes  
+- There is a search limit by the API of max 1000 results  
+- Search using "all_fields()" is only recommended in certain cases as it has an impact on performance  
+- Futher documentation is available in the documentation of each function and on the [clinicaltrials.gov API website](https://clinicaltrials.gov/api/) 
 
 
