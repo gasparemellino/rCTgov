@@ -76,7 +76,10 @@ search_ctgov <- function(expr,
   
   #if results is required as long format
   if (toupper(output) == "LONG") {
-    res <- tidyr::gather(res)
+    res <- res %>%
+      tibble::rownames_to_column() %>%  
+      pivot_longer(-rowname) %>% 
+      pivot_wider(names_from=rowname, values_from=value) 
   }
   
   if(nrow(res) == 0){

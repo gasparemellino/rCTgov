@@ -13,5 +13,6 @@ test_that("search_ctgov runs successfully", {
   expect_equal(search_ctgov("BP28248")$OrgStudyId, "BP28248")
   expect_equal(ncol(search_ctgov("BP28248", output = "LONG")), 2)
   expect_message(search_ctgov("BP28248", fields = all_fields()[1:51]), "The number of fields requested is 51. This may take a while...")
+
 })
 

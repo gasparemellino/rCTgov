@@ -27,4 +27,3 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 .Rproj.user
-rCTgov_demo.R

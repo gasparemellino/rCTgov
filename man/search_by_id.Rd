@@ -5,7 +5,7 @@
 \title{search using STUDYID or NCT num}
 \usage{
 search_by_id(
-  id,
+  ids,
   area = c("OrgStudyId", "SecondaryId"),
   coverage = c("Contains", "FullMatch", "StartsWith", "EndsWith"),
   fields = default_fields(),
@@ -16,7 +16,7 @@ search_by_id(
 )
 }
 \arguments{
-\item{id}{study id or NCT num}
+\item{ids}{one or more study id or NCT num}
 
 \item{area}{declares which search area/fields should be searched}
 
@@ -41,6 +41,7 @@ search clinicaltrials.gov using any study id or NCT number
 \examples{
 \dontrun{
 res <- search_by_id("BP28248")
+res <- search_by_id(c("BP28248", "WN25203", "BN29552"))
 res <- search_by_id("BP28248", coverage = "FullMatch")
 res <- search_by_id("NCT01874691", area = c("NCTId"), fields = c("OrgStudyId", "SecondaryId"))
 res <- search_by_id("BP28248", fields = c("NCTId"))

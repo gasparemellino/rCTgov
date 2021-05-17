@@ -1,1 +1,1 @@
-utils::globalVariables(c("Rank"))
+utils::globalVariables(c("rowname", "value", "Rank"))
