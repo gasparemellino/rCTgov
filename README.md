@@ -4,7 +4,7 @@ The rCTgov package is a collection of R functions to interact with the [Clinical
 ## Installation  
 ```r
 # install.packages("devtools")
-devtools::install_github("gasparemellino/rCTgov")  
+devtools::install_github("gasparemellino/rCTgov", ref = "main")  
 
 library(rCTgov)
 ```
